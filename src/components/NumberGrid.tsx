@@ -6,6 +6,7 @@ const NumberGrid = () => {
   let answer = 0;
 
   const operation = (operation: string | number) => {
+    try {
     switch (operation) {
       case "Del":
         setDisplayText((prev) => prev.slice(0, -1));
@@ -16,9 +17,7 @@ const NumberGrid = () => {
       case "=":
         // add all elements in the
         answer = eval(displayText);
-        if (isNaN(answer)) {
-          setDisplayText(answer.toString());
-        }
+        setDisplayText(answer.toString());
         break;
       case "x":
         setDisplayText((prev) => prev + "*");
@@ -36,6 +35,10 @@ const NumberGrid = () => {
         setDisplayText((prev) => prev + operation.toString());
         break;
     }
+  } catch (e) {
+    alert("can't perform operation")
+  }
+
   };
 
   return (
